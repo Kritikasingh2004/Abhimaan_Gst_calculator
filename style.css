@@ -1,0 +1,334 @@
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --navyblue: #000080;
+}
+
+.sec1 {
+  height: 735px;
+  width: 100%;
+  color: #000000;
+  background-color: #f5f8fa;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: #ffffff;
+  padding: 10px;
+  height: 65px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: sticky;
+}
+
+.left {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.left a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
+  width: 33%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.left a:hover {
+  background-color: #26252592;
+}
+
+.goog-te-combo:hover{
+  background-color: #26252592;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.sec2 {
+  display: flex;
+  justify-content: center;
+  height: 655px;
+  align-items: center;
+  flex-direction: row;
+}
+
+.from-section {
+  height: 677px;
+  background-color: #ffffff;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.field,
+label {
+  width: 90%;
+  display: block;
+  padding: 2px;
+  font-size: 15px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+input {
+  width: 80%;
+  height: 30px;
+  margin: 5px;
+  padding: 5px 5px 5px 5px;
+  border-radius: 7px;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 600;
+  border: 2px solid beige;
+}
+
+.gst-section {
+  width: 50%;
+  background-color: #ffffff;
+  height: 677px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gst-display {
+  width: 50%;
+  height: 400px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.gst-display h2 {
+  height: 47px;
+  background-color: #ffffff;
+  width: 70%;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.number {
+  height: 200px;
+  background-color: #ffffff;
+  width: 70%;
+}
+
+.tablesec {
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+
+.tablesec table {
+  width: 90%;
+  margin-top: 70px;
+}
+
+.normal {
+  width: 12%;
+}
+
+.wide {
+  width: 30%;
+}
+
+/* ...Previous CSS code... */
+
+.btn {
+  height: 48px;
+  margin-top: 20px;
+  padding: 0 24px 0 24px;
+  min-height: auto;
+  font-size: 18px;
+  text-decoration: none solid rgb(255, 255, 255);
+  text-align: center;
+  background-color: #48c5e5;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 7px;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: #2aa3c0;
+  color: #ffffff;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
+#total-cost,
+#generate-invoice {
+  margin-left: 6%;
+  margin-bottom: 20px;
+}
+
+select {
+  width: 85%;
+  height: 43px;
+  font-family: sans-serif;
+  font-weight: 600;
+  background-color: #ffffff;
+  font-size: 17px;
+  outline: none;
+  border: 2px solid beige;
+  border-radius: 7px;
+}
+
+option {
+  font-size: 16px;
+  color: #333;
+}
+
+.rupee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 65px;
+}
+
+/* Additional styles to resemble buffer.com */
+
+.sec1 {
+  background-color: #f5f8fa;
+}
+
+nav {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.from-section {
+  background-color: #ffffff;
+}
+
+form {
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.field,
+label {
+  margin-bottom: 10px;
+}
+
+.gst-display {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gst-display h2 {
+  background-color: #f5f8fa;
+  color: #333333;
+}
+
+.tablesec table {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  background-color: #48c5e5;
+  color: #ffffff;
+}
+
+.btn:hover {
+  background-color: #2aa3c0;
+  color: #ffffff;
+}
+
+/* Adjustments for responsiveness */
+
+@media screen and (max-width: 768px) {
+  .sec1{
+    height: 800px;
+  }
+
+  .sec2 {
+    flex-direction: column;
+    height: auto;
+  }
+
+
+  .from-section,
+  .gst-section {
+    width: 100%;
+    height: 407px;
+  }
+
+  .from-section,
+  .gst-display {
+    height: auto;
+  }
+
+  .from-section form {
+    max-width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sec2 {
+    flex-direction: column;
+    height: auto;
+    align-items: center; /* Center elements vertically */
+  }
+
+  .from-section,
+  .gst-section {
+    width: 100%;
+    margin-bottom: 20px; /* Add some vertical spacing between sections */
+  }
+
+  .from-section form {
+    max-width: 100%;
+    padding: 20px; /* Add padding to the form for spacing */
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .tablesec table {
+    margin-top: 30px; /* Adjust the margin for the table */
+  }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CalNova</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="sec1">
+    <nav>
+      <div class="left">
+        <a href=""><img src="logo.jpg" alt=""></a>
+        <a href="">Home</a>
+        <a href="">Create Invoice</a>
+      </div>
+      <div class="right" id="google_element">
+        </select>
+      </div>
+    </nav>
+    <section class="sec2">
+      <div class="from-section">
+        <form action="" id="item-form">
+          <div class="field">
+            <label for="" class="label1" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Product
+              Name</label>
+            <input type="text" id="item-name">
+          </div>
+          <div class="field"><label for="" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Product
+              price </label>
+            <input type="text" id="item-price">
+          </div>
+          <div class="field">
+            <label for="" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Product quantity</label>
+            <input type="text" id="item-quantity">
+          </div>
+          <div class="field"><label for=""
+              style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Rate</label>
+            <select name="" id="gst-rate" class="section-8">
+              <option value="0">Food grains, milk, books, newspapers and healthcare services</option>
+              <option value="5">Packaged foods, clothes, footwear, and some transport services</option>
+              <option value="12">Medicines, computers, processed foods, and mobile phones</option>
+              <option value="18">Cosmetics, electronics, and financial services</option>
+              <option value="28">High-end cars, tobacco products, and premium consumer durables</option>
+            </select>
+            <button class="btn" onClick="gstcalc()" id="calculate-gst">Calculate GST</button>
+          </div>
+        </form>
+      </div>
+      <div class="gst-section">
+        <section class="gst-display">
+          <h2 style="border-radius: 5px;">TOTAL GST</h2>
+          <div class="number" style="border-radius: 5px;">
+            <h2 id="gst" class="rupee">₹</h2>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+  <section class="sec1 tablesec">
+    <table id="cart-table">
+      <tr>
+        <td class="normal" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">No.</td>
+        <td class="wide" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Particulars</td>
+        <td class="normal" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Price</td>
+        <td class="normal" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Quantity</td>
+        <td class="normal" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">GST</td>
+        <td class="normal" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">GST Rate</td>
+        <td class="normal" id="action" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Action</td>
+      </tr>
+    </table>
+    <div class="cart">
+      <p id="total-cost" style="font-family: sans-serif; font-weight: 600; font-size: 17px;">Total Cost : Rs 00.00</p>
+      <button class="btn" id="generate-invoice" onClick="libPrint()">Generate Invoice</button>
+    </div>
+  </section>
+</body>
+<script>
+  document.getElementById("calculate-gst").addEventListener("click", function(event) {
+  event.preventDefault();
+  gstcalc();
+  addProductToTable();
+});
+
+function gstcalc() {
+  var Price = parseInt(document.getElementById("item-price").value);
+  var rate = parseInt(document.getElementById("gst-rate").value);
+  var quantity = parseInt(document.getElementById("item-quantity").value);
+  var total = Price * quantity * rate;
+  var gst = total / 100;
+  document.getElementById("gst").innerHTML = "₹" + gst.toFixed(2);
+}
+
+function addProductToTable() {
+  var productName = document.getElementById("item-name").value;
+  var productPrice = parseInt(document.getElementById("item-price").value);
+  var gstRate = parseInt(document.getElementById("gst-rate").value);
+  var productQuantity = parseInt(document.getElementById("item-quantity").value);
+  var totalCost = productPrice * productQuantity;
+
+  var table = document.getElementById("cart-table");
+  var rowCount = table.rows.length;
+  var row = table.insertRow(rowCount);
+
+  var cell1 = row.insertCell(0);
+  cell1.innerHTML = rowCount;
+
+  var cell2 = row.insertCell(1);
+  cell2.innerHTML = productName;
+
+  var cell3 = row.insertCell(2);
+  cell3.innerHTML = productPrice;
+
+  var cell4 = row.insertCell(3);
+  cell4.innerHTML = productQuantity;
+
+  var cell5 = row.insertCell(4);
+  cell5.innerHTML = (totalCost * gstRate) / 100;
+
+  var cell6 = row.insertCell(5);
+  cell6.innerHTML = gstRate + "%";
+
+  var cell7 = row.insertCell(6);
+  cell7.innerHTML = '<button class="btn" onClick="deleteRow(this)">Delete</button>';
+
+  updateTotalCost(totalCost);
+}
+
+function deleteRow(button) {
+  var row = button.parentNode.parentNode;
+  var cost = parseFloat(row.cells[2].innerText) * parseInt(row.cells[3].innerText);
+  row.parentNode.removeChild(row);
+
+  updateTotalCost(-cost);
+
+  var table = document.getElementById("cart-table");
+  var rowCount = table.rows.length;
+
+  // Update column numbers
+  for (var i = 1; i < rowCount; i++) {
+    table.rows[i].cells[0].innerText = i;
+  }
+}
+
+function updateTotalCost(cost) {
+  var gst = (cost * parseInt(document.getElementById("gst-rate").value)) / 100;
+  var totalCostElement = document.getElementById("total-cost");
+  var currentTotal = parseFloat(totalCostElement.innerText.split("Rs ")[1]);
+  var newTotal = currentTotal + cost + gst;
+  totalCostElement.innerText = "Total Cost : Rs " + newTotal.toFixed(2);
+}
+
+var libInpEl = document.getElementById("cart-table");
+var actionbutton = document.getElementById("action");
+      function libPrint() {
+        actionbutton.style.display = "none";
+         printJS('cart-table', 'html');
+      }
+
+
+  function loadGoogleTranslate() {
+    new google.translate.TranslateElement("google_element");
+  }
+</script>
+
+<script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+
+</html>
